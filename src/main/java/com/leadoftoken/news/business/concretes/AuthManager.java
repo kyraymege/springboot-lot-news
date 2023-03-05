@@ -22,11 +22,11 @@ import java.util.Set;
 
 @Service
 public class AuthManager implements AuthService {
-    private AuthenticationManager authenticationManager;
-    private UserRepository userRepository;
-    private RoleRepository roleRepository;
-    private PasswordEncoder passwordEncoder;
-    private JwtTokenProvider provider;
+    private final AuthenticationManager authenticationManager;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider provider;
 
     public AuthManager(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, JwtTokenProvider provider) {
         this.authenticationManager = authenticationManager;
@@ -42,9 +42,7 @@ public class AuthManager implements AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        String token = provider.generateToken(authentication);
-
-        return token;
+        return provider.generateToken(authentication);
     }
 
     @Override
