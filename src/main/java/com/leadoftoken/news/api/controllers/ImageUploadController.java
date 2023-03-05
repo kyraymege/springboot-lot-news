@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1/upload")
@@ -21,10 +22,11 @@ public class ImageUploadController {
 
     @PostMapping
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {
+        File resourcesDirectory = new File("src/main/resources/static/image");
+        String PATH_DIRECTORY = resourcesDirectory.getAbsolutePath();
+        String FILE_NAME = new Date().getTime()+"_"+file.getOriginalFilename();
+        Files.copy(file.getInputStream(), Paths.get(PATH_DIRECTORY+ File.separator+ FILE_NAME), StandardCopyOption.REPLACE_EXISTING);
 
-        String PATH_DIRECTORY = new ClassPathResource("static/images/").getFile().getAbsolutePath();
-        Files.copy(file.getInputStream(), Paths.get(PATH_DIRECTORY+ File.separator+file.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
-
-        return new ResponseEntity<>(file.getOriginalFilename(), HttpStatus.OK);
+        return new ResponseEntity<>(FILE_NAME, HttpStatus.OK);
     }
 }
