@@ -1,5 +1,6 @@
 package com.leadoftoken.news.api.controllers;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,9 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1/upload")
+@Tag(
+        name = "REST APIs for ImageUpload Resource"
+)
 public class ImageUploadController {
 
     @PostMapping
