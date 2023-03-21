@@ -59,4 +59,9 @@ public class PostController {
         List<PostDto> posts = postManager.getPostsByCategory(categoryId);
         return ResponseEntity.ok(posts);
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<PostDto>> searchPost(@RequestParam("query") String query){
+        return ResponseEntity.ok(postManager.searchPost(query));
+    }
 }

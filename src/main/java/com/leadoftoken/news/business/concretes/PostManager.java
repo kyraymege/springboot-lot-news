@@ -101,6 +101,12 @@ public class PostManager implements PostService {
         postRepository.delete(post);
     }
 
+    @Override
+    public List<PostDto> searchPost(String query) {
+        List<Post> searchedPosts = postRepository.searchPosts(query);
+        return searchedPosts.stream().map((post) -> mapToDto(post)).collect(Collectors.toList());
+    }
+
     private PostDto mapToDto(Post post){
         PostDto postDto = new PostDto();
         postDto.setId(post.getId());

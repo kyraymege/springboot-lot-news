@@ -1,5 +1,6 @@
 package com.leadoftoken.news.business.abstracts;
 
+import com.leadoftoken.news.entities.concretes.Post;
 import com.leadoftoken.news.entities.dtos.PostDto;
 import com.leadoftoken.news.entities.dtos.PostResponse;
 
@@ -12,4 +13,5 @@ public interface PostService {
     List<PostDto> getPostsByCategory(Long categoryId);
     PostDto updatePost(PostDto postDto, Long id);
     void deletePostById(Long id);
+    List<PostDto> searchPost(String query);
 }
