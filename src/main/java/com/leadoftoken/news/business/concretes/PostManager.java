@@ -40,8 +40,6 @@ public class PostManager implements PostService {
         Post post = mapToEntity(postDto);
         post.setCategory(category);
         post.setUser(user);
-        post.setCreatedAt(new Date());
-        post.setUpdatedAt(new Date());
         Post newPost = postRepository.save(post);
 
         return mapToDto(newPost);
@@ -87,7 +85,6 @@ public class PostManager implements PostService {
         Post post = postRepository.findById(id).orElseThrow(()-> new ResourceNotFoundException("Post","id",id));
         Category category = categoryRepository.findById(postDto.getCategoryId()).orElseThrow(()-> new ResourceNotFoundException("Category","id",postDto.getCategoryId()));
         post.setContent(postDto.getContent());
-        post.setUpdatedAt(new Date());
         post.setCategory(category);
         post.setCoverImg(postDto.getCoverImg());
 

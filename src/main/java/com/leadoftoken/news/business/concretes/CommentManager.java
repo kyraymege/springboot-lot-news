@@ -5,7 +5,6 @@ import com.leadoftoken.news.entities.concretes.Comment;
 import com.leadoftoken.news.entities.concretes.Post;
 import com.leadoftoken.news.entities.concretes.User;
 import com.leadoftoken.news.entities.dtos.CommentDto;
-import com.leadoftoken.news.entities.dtos.PostDto;
 import com.leadoftoken.news.exceptions.NewsApiException;
 import com.leadoftoken.news.exceptions.ResourceNotFoundException;
 import com.leadoftoken.news.repository.CommentRepository;
@@ -32,8 +31,6 @@ public class CommentManager implements CommentService {
         Comment comment = mapToEntity(commentDto);
         comment.setPost(post);
         comment.setUser(user);
-        comment.setCreatedAt(new Date());
-        comment.setUpdatedAt(new Date());
 
         Comment savedComment = commentRepository.save(comment);
         return mapToDto(savedComment);
@@ -75,7 +72,6 @@ public class CommentManager implements CommentService {
         }
 
         //Update fields
-        comment.setUpdatedAt(new Date());
         comment.setContent(commentDto.getContent());
 
         //save db
