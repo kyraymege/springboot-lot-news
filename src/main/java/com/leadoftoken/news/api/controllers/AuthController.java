@@ -4,6 +4,7 @@ import com.leadoftoken.news.business.concretes.AuthManager;
 import com.leadoftoken.news.entities.dtos.JwtAuthResponse;
 import com.leadoftoken.news.entities.dtos.LoginDto;
 import com.leadoftoken.news.entities.dtos.RegisterDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/auth")
+@Tag(
+        name = "REST APIs for Auth Resource"
+)
 public class AuthController {
 
     private AuthManager authManager;

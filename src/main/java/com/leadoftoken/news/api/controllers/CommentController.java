@@ -2,6 +2,7 @@ package com.leadoftoken.news.api.controllers;
 
 import com.leadoftoken.news.business.concretes.CommentManager;
 import com.leadoftoken.news.entities.dtos.CommentDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/comments")
+@Tag(
+        name = "REST APIs for Comment Resource"
+)
 public class CommentController {
     private CommentManager commentManager;
 
